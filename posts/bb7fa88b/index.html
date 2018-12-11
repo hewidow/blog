@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="线段树 区间合并 离散化,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="线段树 区间合并 离散化">
+<meta name="keywords" content="线段树 区间合并 离散化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[HDU-3642]Get The Treasury">
+<meta property="og:url" content="https://hewidow.github.io/blog/posts/bb7fa88b/index.html">
+<meta property="og:site_name" content="Widow&#39;s Blog">
+<meta property="og:description" content="线段树 区间合并 离散化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-11T16:53:33.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[HDU-3642]Get The Treasury">
+<meta name="twitter:description" content="线段树 区间合并 离散化">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hewidow.github.io/blog/posts/bb7fa88b/">
+
+
+
+
+
+  <title>[HDU-3642]Get The Treasury | Widow's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5c1fbb7e4902f0d279f19a1ee14026ba";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Widow's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hewidow.github.io/blog/blog/posts/bb7fa88b/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RDJ.Widow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Widow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[HDU-3642]Get The Treasury</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-11T22:13:17+08:00">
+                2018-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>线段树 区间合并 离散化<br><a id="more"></a></p>
+<center><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3642" target="_blank" rel="noopener"><strong>Get The Treasury</strong></a></center><br><center>Time Limit: 10000/5000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)<br>Total Submission(s): 3758    Accepted Submission(s): 1203</center>
+
+
+<p><strong>Problem Description</strong></p>
+<blockquote>
+<p>Jack knows that there is a great underground treasury in a secret region. And he has a special device that can be used to detect treasury under the surface of the earth. One day he got outside with the device to ascertain the treasury. He chose many different locations on the surface of the earth near the secret region. And at each spot he used the device to detect treasury and got some data from it representing a region, which may contain treasury below the surface. The data from the device at each spot is six integers x1, y1, z1, x2, y2 and z2 (x1&lt;x2, y1&lt;y2, z1&lt;z2). According to the instruction of the device they represent the range of x, y and z coordinates of the region. That is to say, the x coordinate of the region, which may contain treasury, ranges from x1 to x2. So do y and z coordinates. The origin of the coordinates is a fixed point under the ground.<br>Jack can’t get the total volume of the treasury because these regions don’t always contain treasury. Through years of experience, he discovers that if a region is detected that may have treasury at more than two different spots, the region really exist treasure. And now Jack only wants to know the minimum volume of the treasury.<br>Now Jack entrusts the problem to you.</p>
+</blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<p>The first line of the input file contains a single integer t, the number of test cases, followed by the input data for each test case.<br>Each test case is given in some lines. In the first line there is an integer n (1 ≤ n ≤ 1000), the number of spots on the surface of the earth that he had detected. Then n lines follow, every line contains six integers x1, y1, z1, x2, y2 and z2, separated by a space. The absolute value of x and y coordinates of the vertices is no more than 106, and that of z coordinate is no more than 500.</p>
+</blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<p>For each test case, you should output “Case a: b” in a single line. a is the case number, and b is the minimum volume of treasury. The case number is counted from one.</p>
+</blockquote>
+<p><strong>Sample Input</strong></p>
+<blockquote>
+<p>2<br>1<br>0 0 0 5 6 4<br>3<br>0 0 0 5 5 5<br>3 3 3 9 10 11<br>3 3 3 13 20 45</p>
+</blockquote>
+<p><strong>Sample Output</strong></p>
+<blockquote>
+<p>Case 1: 0<br>Case 2: 8</p>
+</blockquote>
+<p>因为之前没有搞博客，所以注释都写在代码里了，我这个人也比较懒，就不提取出来了，稍微改一下好了。。。</p>
+<p><strong>代码</strong><br>先放一份自己的弱鸡pushdown代码（C++ TLE。。。）感觉就修改覆盖几次方便，不用像只有pushup的版本一样写一大堆tree。。。<br><strong>AC 4633ms G++</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">emmm这是一道三维求重叠至少3次的体积...</span></span><br><span class="line"><span class="comment">应该要离散化。。。</span></span><br><span class="line"><span class="comment">思路1（太麻烦）：我感觉先算重叠的x-y轴面积，然后再乘重叠z轴。。。</span></span><br><span class="line"><span class="comment">思路2(错。。难实现)：每一面都算一遍重叠面积，然后乘起来就是xy*xz*yz=x2*y2*z2,开根号就是体积xyz了。。。</span></span><br><span class="line"><span class="comment">百度思路：暴力枚举z轴，反正就500。。。</span></span><br><span class="line"><span class="comment">然后就超时啦。。。</span></span><br><span class="line"><span class="comment">memset搞小也没用。。。</span></span><br><span class="line"><span class="comment">只能离散z轴再枚举了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> fuck=<span class="number">1e6</span>;<span class="comment">//原谅我的粗暴</span></span><br><span class="line"><span class="keyword">int</span> tree[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> flag[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//记录标记</span></span><br><span class="line"><span class="keyword">int</span> x[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//离散x轴并记录下来</span></span><br><span class="line"><span class="keyword">int</span> ak[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//离散z轴并记录下来</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,h;</span><br><span class="line">    <span class="keyword">int</span> cov;</span><br><span class="line">&#125;line[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//存每条边的左端点l，右端点r，和y轴坐标h，以及cov存的是上边还是下边，下边为1，上边为-1，从下往上扫描</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,z;</span><br><span class="line">&#125;sx[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//记录题目提供的数据，因为下面在遍历每个z坐标时需要从题目给的数据中提取出在z坐标范围内符合的数据</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a,Node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.h&lt;b.h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tree[rt]=tree[rt&lt;&lt;<span class="number">1</span>]+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];<span class="comment">//这里不用担心会pushup错，因为比如父树不混乱且已经覆盖了三层，然后需要updata他的左子树，因为有pushdown，所以右子树也是有值的，所以是可以保证一个标记不混乱的父树的所有子树都有值且有标记，所以即使不管怎么updata，pushup上来都是对的。所以这种如果查询区间，可以保证每个区间都是正确的，而下面那种updata版本就不行</span></span><br><span class="line">    <span class="keyword">if</span> (flag[rt&lt;&lt;<span class="number">1</span>]!=flag[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]) flag[rt]=<span class="number">-1</span>;<span class="comment">//如果左子树和右子树标记不一样，父树标记就记为-1，代表标记混乱，找的时候就要去找子树了</span></span><br><span class="line">    <span class="keyword">else</span> flag[rt]=flag[rt&lt;&lt;<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> m,<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag[rt]!=<span class="number">-1</span>)<span class="comment">//如果标记不混乱就下推标记</span></span><br><span class="line">    &#123;</span><br><span class="line">        flag[rt&lt;&lt;<span class="number">1</span>]=flag[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=flag[rt];</span><br><span class="line">        <span class="keyword">if</span> (flag[rt]&lt;=<span class="number">2</span>)<span class="comment">/*！！！此处和其他2处可以通过修改&lt;=的值来达到任意求覆盖多少层的效果！！！*/</span></span><br><span class="line">        &#123;</span><br><span class="line">            tree[rt&lt;&lt;<span class="number">1</span>]=tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            tree[rt&lt;&lt;<span class="number">1</span>]=x[m]-x[l<span class="number">-1</span>];<span class="comment">//因为下面主函数里是l+1，r进来的，所以这里l-1</span></span><br><span class="line">            tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]=x[r]-x[m];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(<span class="keyword">int</span> nl,<span class="keyword">int</span> nr,<span class="keyword">int</span> nc,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nl&lt;=l&amp;&amp;r&lt;=nr&amp;&amp;flag[rt]!=<span class="number">-1</span>)<span class="comment">//标记不混乱才可以进去更新。当然，不用担心当l==r时，因为l==r时标记肯定不混乱，因为l==r已经没有子树给他混乱了</span></span><br><span class="line">    &#123;</span><br><span class="line">        flag[rt]+=nc;<span class="comment">//加上标记，可以算出来覆盖了几层，flag肯定大于等于0</span></span><br><span class="line">        <span class="keyword">if</span> (flag[rt]&lt;=<span class="number">2</span>)<span class="comment">/*！！！此处和其他2处可以通过修改&lt;=的值来达到任意求覆盖多少层的效果！！！*/</span></span><br><span class="line">        &#123;</span><br><span class="line">            tree[rt]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            tree[rt]=x[r]-x[l<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> m=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    pushdown(l,r,m,rt);</span><br><span class="line">    <span class="keyword">if</span> (nl&lt;=m) updata(nl,nr,nc,l,m,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (nr&gt;m) updata(nl,nr,nc,m+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,t,cnt,real_cnt,cas=<span class="number">0</span>,cont,real_cont;</span><br><span class="line">    <span class="keyword">int</span> x1,y1,z1,x2,y2,z2;</span><br><span class="line">    <span class="comment">//int minn_z=501;</span></span><br><span class="line">    <span class="comment">//int maxn_z=-501;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">        cont=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d%d"</span>,&amp;x1,&amp;y1,&amp;z1,&amp;x2,&amp;y2,&amp;z2);</span><br><span class="line">            x1+=fuck;</span><br><span class="line">            y1+=fuck;</span><br><span class="line">            x2+=fuck;</span><br><span class="line">            y2+=fuck;<span class="comment">//把负坐标变正</span></span><br><span class="line">            ak[++cont]=z1;</span><br><span class="line">            ak[++cont]=z2;<span class="comment">//离散z轴</span></span><br><span class="line">            sx[i].x=x1;</span><br><span class="line">            sx[i].y=y1;</span><br><span class="line">            sx[i].z=z1;</span><br><span class="line">            sx[i+n].x=x2;</span><br><span class="line">            sx[i+n].y=y2;</span><br><span class="line">            sx[i+n].z=z2;<span class="comment">//存数据</span></span><br><span class="line">        &#125;</span><br><span class="line">        sort(ak+<span class="number">1</span>,ak+cont+<span class="number">1</span>);</span><br><span class="line">        real_cont=unique(ak+<span class="number">1</span>,ak+cont+<span class="number">1</span>)-ak<span class="number">-1</span>;<span class="comment">//去重</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;real_cont;k++)<span class="comment">//枚举z轴，相当于切黄瓜一样，一层一层算，而且z都是整数,这里用k防止和sx的z混淆</span></span><br><span class="line">        &#123;</span><br><span class="line">            cnt=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (sx[i].z&lt;=ak[k]&amp;&amp;ak[k]&lt;sx[i+n].z)<span class="comment">//右边只取到&lt;号，为了排除像这种1 1 1 2 2 2 / 1 1 1 8 8 8 错算成2的情况，和下面扫描线只到倒数第二根一个道理</span></span><br><span class="line">                &#123;</span><br><span class="line">                    x[++cnt]=sx[i].x;</span><br><span class="line">                    line[cnt].l=sx[i].x;</span><br><span class="line">                    line[cnt].r=sx[i+n].x;</span><br><span class="line">                    line[cnt].h=sx[i].y;</span><br><span class="line">                    line[cnt].cov=<span class="number">1</span>;</span><br><span class="line">                    x[++cnt]=sx[i+n].x;</span><br><span class="line">                    line[cnt].l=sx[i].x;</span><br><span class="line">                    line[cnt].r=sx[i+n].x;</span><br><span class="line">                    line[cnt].h=sx[i+n].y;</span><br><span class="line">                    line[cnt].cov=<span class="number">-1</span>;<span class="comment">//符合数据的进来</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="comment">//下面语句附带剪枝效果</span></span><br><span class="line">            <span class="keyword">if</span> (cnt&lt;=<span class="number">2</span>) <span class="keyword">continue</span>;<span class="comment">/*！！！此处和其他2处可以通过修改&lt;=的值来达到任意求覆盖多少层的效果！！！*/</span></span><br><span class="line">            sort(x+<span class="number">1</span>,x+cnt+<span class="number">1</span>);</span><br><span class="line">            real_cnt=unique(x+<span class="number">1</span>,x+cnt+<span class="number">1</span>)-x<span class="number">-1</span>;</span><br><span class="line">            sort(line+<span class="number">1</span>,line+cnt+<span class="number">1</span>,cmp);</span><br><span class="line">            <span class="built_in">memset</span>(flag,<span class="number">0</span>,(cnt&lt;&lt;<span class="number">2</span>|<span class="number">3</span>)*<span class="keyword">sizeof</span>(flag[<span class="number">0</span>]));</span><br><span class="line">            <span class="built_in">memset</span>(tree,<span class="number">0</span>,(cnt&lt;&lt;<span class="number">2</span>|<span class="number">3</span>)*<span class="keyword">sizeof</span>(tree[<span class="number">0</span>]));</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;cnt;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> l=lower_bound(x+<span class="number">1</span>,x+real_cnt+<span class="number">1</span>,line[i].l)-x;</span><br><span class="line">                <span class="keyword">int</span> r=lower_bound(x+<span class="number">1</span>,x+real_cnt+<span class="number">1</span>,line[i].r)-x;</span><br><span class="line">                updata(l+<span class="number">1</span>,r,line[i].cov,<span class="number">1</span>,real_cnt,<span class="number">1</span>);</span><br><span class="line">                ans+=<span class="number">1l</span>l*tree[<span class="number">1</span>]*(line[i+<span class="number">1</span>].h-line[i].h)*(ak[k+<span class="number">1</span>]-ak[k]);<span class="comment">//乘上这个，因为如果z轴是一个是2一个是4，那3肯定是连续体积的，2~4不会是不连续的</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>,++cas,ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二份只有pushup版的代码。感谢wxk博客帮助我理解下面wxk天下第一，推一波wxk的博客<a href="https://www.cnblogs.com/MingSD/" target="_blank" rel="noopener">MingSD</a><br><strong>AC 1045ms G++</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">加个这个(l==r)?0:感觉保险一点，防止rt&lt;&lt;1和rt&lt;&lt;1|1溢出。。。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> fuck=<span class="number">1e6</span>;</span><br><span class="line"><span class="keyword">int</span> tree[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>],tree2[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>],tree3[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];<span class="comment">//tree表示覆盖1次的（即没有覆盖的）、tree2表示覆盖2次的，tree3表示覆盖3次及以上的</span></span><br><span class="line"><span class="keyword">int</span> flag[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> x[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> ak[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="comment">//int cz[fuck*2+3];</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,h;</span><br><span class="line">    <span class="keyword">int</span> cov;</span><br><span class="line">    Node()&#123;&#125;;</span><br><span class="line">    Node(<span class="keyword">int</span> x1,<span class="keyword">int</span> x2,<span class="keyword">int</span> y,<span class="keyword">int</span> c)</span><br><span class="line">    &#123;</span><br><span class="line">        l=x1;</span><br><span class="line">        r=x2;</span><br><span class="line">        h=y;</span><br><span class="line">        cov=c;</span><br><span class="line">    &#125;<span class="comment">//写上这个就可以愉快地使用形如line[cnt]=Node(sx[i].x,sx[i+n].x,sx[i].y,1);这样的东西</span></span><br><span class="line">&#125;line[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,z;</span><br><span class="line">    sNode()&#123;&#125;;</span><br><span class="line">    sNode(<span class="keyword">int</span> x1,<span class="keyword">int</span> y1,<span class="keyword">int</span> z1)</span><br><span class="line">    &#123;</span><br><span class="line">        x=x1;</span><br><span class="line">        y=y1;</span><br><span class="line">        z=z1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;sx[maxn&lt;&lt;<span class="number">2</span>|<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a,Node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.h&lt;b.h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag[rt]&gt;=<span class="number">3</span>)<span class="comment">//因为下面是r-1，所以这里都是r+1</span></span><br><span class="line">    &#123;</span><br><span class="line">        tree3[rt]=x[r+<span class="number">1</span>]-x[l];</span><br><span class="line">        tree[rt]=tree2[rt]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (flag[rt]==<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        tree3[rt]=(l==r)?<span class="number">0</span>:tree3[rt&lt;&lt;<span class="number">1</span>]+tree3[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+tree2[rt&lt;&lt;<span class="number">1</span>]+tree2[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+tree[rt&lt;&lt;<span class="number">1</span>]+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];<span class="comment">//该区间flag为2，因为没有下推，所以左右子树可能会有flag=1、2、3的，然后加上该区间的flag的值2，肯定会大于等于3。。。</span></span><br><span class="line">        tree2[rt]=x[r+<span class="number">1</span>]-x[l]-tree3[rt];</span><br><span class="line">        tree[rt]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (flag[rt]==<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        tree3[rt]=(l==r)?<span class="number">0</span>:tree3[rt&lt;&lt;<span class="number">1</span>]+tree3[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]+tree2[rt&lt;&lt;<span class="number">1</span>]+tree2[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];<span class="comment">//同理只有子树flag=2、3，然后加上父亲的flag的值1才会大于等于3</span></span><br><span class="line">        tree2[rt]=(l==r)?<span class="number">0</span>:tree[rt&lt;&lt;<span class="number">1</span>]+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];<span class="comment">//同理子树flag=1加上父亲的flag的值1才会大于等于2</span></span><br><span class="line">        tree[rt]=x[r+<span class="number">1</span>]-x[l]-tree3[rt]-tree2[rt];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (l==r) tree[rt]=tree2[rt]=tree3[rt]=<span class="number">0</span>;<span class="comment">//因为上三种情况都没有那肯定是当前没有覆盖，面积肯定是0呀，且没子树了，所以单独列出来</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        tree[rt]=tree[rt&lt;&lt;<span class="number">1</span>]+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">        tree2[rt]=tree2[rt&lt;&lt;<span class="number">1</span>]+tree2[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">        tree3[rt]=tree3[rt&lt;&lt;<span class="number">1</span>]+tree3[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(<span class="keyword">int</span> nl,<span class="keyword">int</span> nr,<span class="keyword">int</span> nc,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nl&lt;=l&amp;&amp;r&lt;=nr)</span><br><span class="line">    &#123;</span><br><span class="line">        flag[rt]+=nc;</span><br><span class="line">        pushup(l,r,rt);<span class="comment">//注意这里要写这个，比较特殊。因为子树可能可以通过父树的标记加上自己子树的标记满足题目条件</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> m=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (nl&lt;=m) updata(nl,nr,nc,l,m,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (nr&gt;m) updata(nl,nr,nc,m+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    pushup(l,r,rt);<span class="comment">//不用担心有节点离父树好几层，无法加到，导致少加了一些。因为每次pushup上来可以保证某一层以上的都是正确的，然后如果需要updata更深层的，虽然最深层到那某一层的路途中可能都是错误的，但是可以保证的是，继续向上pushup上来，某一层包括自己及以上的都是正确的，所以往最坏的情况想至少可以保证tree[1],tree2[1],tree3[1]是正确的。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,t,cnt,real_cnt,cas=<span class="number">0</span>,cont,real_cont;</span><br><span class="line">    <span class="keyword">int</span> x1,y1,z1,x2,y2,z2;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">        cont=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d%d"</span>,&amp;sx[i].x,&amp;sx[i].y,&amp;sx[i].z,&amp;sx[i+n].x,&amp;sx[i+n].y,&amp;sx[i+n].z);</span><br><span class="line">            sx[i].x+=fuck;</span><br><span class="line">            sx[i].y+=fuck;</span><br><span class="line">            sx[i+n].x+=fuck;</span><br><span class="line">            sx[i+n].y+=fuck;</span><br><span class="line">            ak[++cont]=sx[i].z;</span><br><span class="line">            ak[++cont]=sx[i+n].z;<span class="comment">//离散z轴</span></span><br><span class="line">        &#125;</span><br><span class="line">        sort(ak+<span class="number">1</span>,ak+cont+<span class="number">1</span>);</span><br><span class="line">        real_cont=unique(ak+<span class="number">1</span>,ak+cont+<span class="number">1</span>)-ak<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;real_cont;k++)<span class="comment">//枚举z轴，相当于切黄瓜一样，一层一层算，而且z都是整数,这里用k防止和sx的z混淆</span></span><br><span class="line">        &#123;</span><br><span class="line">            cnt=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (sx[i].z&lt;=ak[k]&amp;&amp;ak[k]&lt;sx[i+n].z)<span class="comment">//排除像这种1 1 1 2 2 2 / 1 1 1 8 8 8 错算成2的情况</span></span><br><span class="line">                &#123;</span><br><span class="line">                    x[++cnt]=sx[i].x;</span><br><span class="line">                    line[cnt]=Node(sx[i].x,sx[i+n].x,sx[i].y,<span class="number">1</span>);</span><br><span class="line">                    x[++cnt]=sx[i+n].x;</span><br><span class="line">                    line[cnt]=Node(sx[i].x,sx[i+n].x,sx[i+n].y,<span class="number">-1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt&lt;=<span class="number">2</span>) <span class="keyword">continue</span>;<span class="comment">//剪枝并且控制重叠次数语句</span></span><br><span class="line">            sort(x+<span class="number">1</span>,x+cnt+<span class="number">1</span>);</span><br><span class="line">            real_cnt=unique(x+<span class="number">1</span>,x+cnt+<span class="number">1</span>)-x<span class="number">-1</span>;</span><br><span class="line">            sort(line+<span class="number">1</span>,line+cnt+<span class="number">1</span>,cmp);</span><br><span class="line">            <span class="comment">/*for (int i=1;i&lt;=real_cnt;i++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                cz[x[i]]=i;</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=(cnt&lt;&lt;<span class="number">2</span>|<span class="number">3</span>);i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">            &#123;</span><br><span class="line">                flag[i]=tree[i]=tree2[i]=tree3[i]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;cnt;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> l=lower_bound(x+<span class="number">1</span>,x+real_cnt+<span class="number">1</span>,line[i].l)-x;</span><br><span class="line">                <span class="keyword">int</span> r=lower_bound(x+<span class="number">1</span>,x+real_cnt+<span class="number">1</span>,line[i].r)-x;</span><br><span class="line">                updata(l,r<span class="number">-1</span>,line[i].cov,<span class="number">1</span>,real_cnt,<span class="number">1</span>);<span class="comment">//下面的-1是为了弥补比如原来(3,3)的空档，注意-1位置，和我之前的习惯不一样，虽然也可以用我那种。。。</span></span><br><span class="line">                ans+=<span class="number">1l</span>l*tree3[<span class="number">1</span>]*(line[i+<span class="number">1</span>].h-line[i].h)*(ak[k+<span class="number">1</span>]-ak[k]);<span class="comment">//乘上这个，因为如果z轴是一个是2一个是4，那3肯定是连续体积的，2~4不会是不连续的</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>,++cas,ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>两种版本时间区别这么大的原因（仅代表个人观点）：第一种因为保证了每个区间都是正确的，可能updata时前半部分的区间范围条件已经满足，但总是标记混乱，直到最后l==r时，这就导致了效率极其低下，因为此题不需要每个区间都正确，只需要下标为1的第一个区间即可。然后第二种就是只保证了下标为1的区间的正确性，不保证下面的正确与否，updata一到满足的区间就立马updata了，效率就快很多了。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/线段树-区间合并-离散化/" rel="tag"># 线段树 区间合并 离散化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/1c291ca3/" rel="next" title="Hello World!">
+                <i class="fa fa-chevron-left"></i> Hello World!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RDJ.Widow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RDJ.Widow</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
