@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="差分标记,前缀和,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="差分标记 前缀和">
+<meta name="keywords" content="差分标记,前缀和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ZSTUOJ-4438]曼哈顿距离">
+<meta property="og:url" content="https://hewidow.github.io/blog/posts/34116b35/index.html">
+<meta property="og:site_name" content="Widow&#39;s Blog">
+<meta property="og:description" content="差分标记 前缀和">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-1.jpg">
+<meta property="og:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-3.png">
+<meta property="og:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-2.png">
+<meta property="og:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-4.png">
+<meta property="og:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-5.png">
+<meta property="og:updated_time" content="2018-12-13T15:41:55.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[ZSTUOJ-4438]曼哈顿距离">
+<meta name="twitter:description" content="差分标记 前缀和">
+<meta name="twitter:image" content="https://hewidow.github.io/blog/images/ZSTUOJ-4438-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hewidow.github.io/blog/posts/34116b35/">
+
+
+
+
+
+  <title>[ZSTUOJ-4438]曼哈顿距离 | Widow's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5c1fbb7e4902f0d279f19a1ee14026ba";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Widow's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hewidow.github.io/blog/blog/posts/34116b35/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RDJ.Widow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Widow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[ZSTUOJ-4438]曼哈顿距离</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-13T22:13:36+08:00">
+                2018-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/差分标记-前缀和/" itemprop="url" rel="index">
+                    <span itemprop="name">差分标记&前缀和</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/blog/posts/34116b35/" class="leancloud_visitors" data-flag-title="[ZSTUOJ-4438]曼哈顿距离">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>差分标记 前缀和<br><a id="more"></a></p>
+<p><center><a href="http://oj.acm.zstu.edu.cn/JudgeOnline/problem.php?id=4438" target="_blank" rel="noopener"><strong>4438: 曼哈顿距离</strong></a></center></p>
+<p><center>Time Limit: 1 Sec  Memory Limit: 128 MB<br>Submit: 171  Solved: 52</center><br><strong>Description</strong></p>
+<blockquote>
+<p>在平面上，坐标（x1, y1）的点P1与坐标（x2, y2）的点P2的曼哈顿距离为：|x1-x2|+|y1-y2|。 现在有一个nXn (1&lt;=n&lt;=1000)的矩阵，一开始矩阵中每个元素的值都为零。 对这个矩阵进行m (1&lt;=m&lt;=100000)次操作，每次操作定义如下：<br>(x1, y1), (x2, y2): 对于矩阵中满足x1&lt;=x&lt;=x2, y1&lt;=y&lt;=y2的所有元素(x, y)加上(x, y)与(x1, y1)的曼哈顿距离|x1-x|+|y1-y|<br>例如，当n=5，m=2，两组操作分别为(1, 1), (4, 4)和(2, 2), (5, 5):<br><img src="../../images/ZSTUOJ-4438-1.jpg" alt=""><br>现在想让你输出m次操作后的矩阵，但是由于本OJ输出文件不能超过1M，所以输出矩阵所有非零元素的乘积即可 （结果对1000000007取余）,没有非零项则输出0；</p>
+</blockquote>
+<p><strong>Input</strong></p>
+<blockquote>
+<p>第一行两个整数n， m，分别表示正方形网格的边长和操作次数；<br>接下来m行，每行4个整数x1 y1 x2 y2；</p>
+</blockquote>
+<p><strong>Output</strong></p>
+<blockquote>
+<p>输出一个整数代表答案。</p>
+</blockquote>
+<p><strong>Sample Input</strong></p>
+<blockquote>
+<p>5 2<br>1 1 4 4<br>2 2 5 5<br><strong>Sample Output</strong><br>853543927</p>
+</blockquote>
+<p>思路：首先要会差分标记，然后会求前缀和，这里放2个链接</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/k_r_forever/article/details/81775899" target="_blank" rel="noopener">https://blog.csdn.net/k_r_forever/article/details/81775899</a><br><a href="https://www.cnblogs.com/OIerShawnZhou/p/7348088.html" target="_blank" rel="noopener">https://www.cnblogs.com/OIerShawnZhou/p/7348088.html</a></p>
+</blockquote>
+<p>然后做的时候建立2个差分数组，一个记录每次要加的最小值，也就是1；一个记录要加的最大值，也就是加到多少为止，为x1+y1那么多。理由我代码里讲。</p>
+<p>闲话：这道题可以说是被我和申屠一起玩坏了，先放几张图片<br><img src="../../images/ZSTUOJ-4438-3.png" alt=""><br><img src="../../images/ZSTUOJ-4438-2.png" alt=""><br>看看这满满一页的提交，看看这内存占用的。。。就快爆128MB了。。。而且我们感觉占用110MB内存和116MB内存速度就是2个差别，所以要压力测试，使劲爆！（这样才会快点#手动滑稽）</p>
+<p><strong>代码</strong><br>先放一份不那么反人类的吧。。。<br><strong>AC 8776kb 92ms C</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">int</span> cf[<span class="number">1003</span>][<span class="number">1003</span>];<span class="comment">//差分数组一号，记录最小差分值</span></span><br><span class="line"><span class="keyword">int</span> cf2[<span class="number">1003</span>][<span class="number">1003</span>];<span class="comment">//差分数组二号，记录最大差分值</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,a,b,c,d,dif,now;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">while</span> (m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;a,&amp;b,&amp;c,&amp;d);</span><br><span class="line">        cf[a][b]+=<span class="number">1</span>;</span><br><span class="line">        cf[c+<span class="number">1</span>][d+<span class="number">1</span>]+=<span class="number">1</span>;</span><br><span class="line">        cf[a][d+<span class="number">1</span>]-=<span class="number">1</span>;</span><br><span class="line">        cf[c+<span class="number">1</span>][b]-=<span class="number">1</span>;<span class="comment">//二维差分的标记方法，使(a,b)到(c,d)这整块上的值都+1</span></span><br><span class="line">        dif=a+b;</span><br><span class="line">        cf2[a][b]+=dif;</span><br><span class="line">        cf2[c+<span class="number">1</span>][d+<span class="number">1</span>]+=dif;</span><br><span class="line">        cf2[a][d+<span class="number">1</span>]-=dif;</span><br><span class="line">        cf2[c+<span class="number">1</span>][b]-=dif;<span class="comment">//使(a,b)到(c,d)这整块上的值都+dif</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cf[i][j]+=cf[i][j<span class="number">-1</span>]+cf[i<span class="number">-1</span>][j]-cf[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">            cf2[i][j]+=cf2[i][j<span class="number">-1</span>]+cf2[i<span class="number">-1</span>][j]-cf2[i<span class="number">-1</span>][j<span class="number">-1</span>];<span class="comment">//差分求前缀和的公式，a[i][j]+=a[i][j-1]+a[i-1][j]-a[i-1][j-1]+cf[i][j]，这里因为a矩阵初始值都是0，而且前缀和只需最后的时候求一遍，所以这题可以直接用cf数组充当a数组来存储前缀和，就相当于cf[i][j]=cf[i][j-1]+cf[i-1][j]-cf[i-1][j-1]+cf[i][j]，即上面的式子，省了一些内存。。。（）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            now=cf[i][j]*(i+j)-cf2[i][j];<span class="comment">//下面将解释为什么上面的cf2是加上(x1+y1)，这里为什么是这样乘起来计算</span></span><br><span class="line">            <span class="keyword">if</span> (now)</span><br><span class="line">            &#123;</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                ans=ans*now%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>原因：看下面这图，只需看tot2和sum2。假设他的左上角的点为(a,b)，a=1，b=1，假设有一点(x,y)，x=3，y=5，注意这里的坐标都是以绝对坐标为准（即以(0,0)点为原点），那么cf[i][j]=1，cf2[i][j]=a+b=2，则<code>cf[i][j] * (i+j) - cf2[i][j] = 1 * (3+5) - (1+1) = 6 = (x-a) + (y-b)，[x&gt;a且y&gt;b]</code> ，分配一下就可以看出其实这个式子是会算出(x,y)离(a,b)点多远，相当于题目里的这个<code>|x1-x|+|y1-y|</code>。<br>好，如果是叠了2层，一样的，那假设有2个左上角的点分别为(a1,b1)，(a2,b2)，有一点(x,y)，那就是<code>cf[i][j] * (i+j) - cf2[i][j] = 2 *(x+y) - (a1+b1+a2+b2) = (x-a1) + (y-b1) + (x-a2) + (y-b2)</code>，所以是一样的，没什么区别。。。很easy的道理，而且可以保证的是，如果有cf[i][j]的值那(i,j)的点一定比左上角的(a,b)点大。。。<br><img src="../../images/ZSTUOJ-4438-4.png" alt=""></p>
+<p>然后下面是我的反人类代码，使用了快读fread()，原理是把数据先全读到缓冲区，然后再通过字符读取数据<br><strong>AC 127596kb 48ms C++</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">int</span> cf[<span class="number">1002</span>][<span class="number">1002</span>];</span><br><span class="line"><span class="keyword">int</span> cf2[<span class="number">1002</span>][<span class="number">1002</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">namespace</span> IO &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MT = <span class="number">116</span> * <span class="number">1024</span> * <span class="number">1024</span>;<span class="comment">//这里是116MB</span></span><br><span class="line">    <span class="keyword">char</span> IO_BUF[MT];</span><br><span class="line">    <span class="keyword">int</span> IO_PTR, IO_SZ;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">begin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        IO_PTR = <span class="number">0</span>;</span><br><span class="line">        IO_SZ = fread (IO_BUF, <span class="number">1</span>, MT, <span class="built_in">stdin</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">scan_d</span> <span class="params">(T &amp; t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (IO_PTR &lt; IO_SZ &amp;&amp; IO_BUF[IO_PTR] != <span class="string">'-'</span> &amp;&amp; (IO_BUF[IO_PTR] &lt; <span class="string">'0'</span> || IO_BUF[IO_PTR] &gt; <span class="string">'9'</span>))</span><br><span class="line">            IO_PTR ++;</span><br><span class="line">        <span class="keyword">if</span> (IO_PTR &gt;= IO_SZ) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">bool</span> sgn = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (IO_BUF[IO_PTR] == <span class="string">'-'</span>) sgn = <span class="literal">true</span>, IO_PTR ++;</span><br><span class="line">        <span class="keyword">for</span> (t = <span class="number">0</span>; IO_PTR &lt; IO_SZ &amp;&amp; <span class="string">'0'</span> &lt;= IO_BUF[IO_PTR] &amp;&amp; IO_BUF[IO_PTR] &lt;= <span class="string">'9'</span>; IO_PTR ++)</span><br><span class="line">            t = t * <span class="number">10</span> + IO_BUF[IO_PTR] - <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (sgn) t = -t;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">scan_s</span> <span class="params">(<span class="keyword">char</span> s[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (IO_PTR &lt; IO_SZ &amp;&amp; (IO_BUF[IO_PTR] == <span class="string">' '</span> || IO_BUF[IO_PTR] == <span class="string">'\n'</span>) ) IO_PTR ++;</span><br><span class="line">        <span class="keyword">if</span> (IO_PTR &gt;= IO_SZ) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (IO_PTR &lt; IO_SZ &amp;&amp; IO_BUF[IO_PTR] != <span class="string">' '</span> &amp;&amp; IO_BUF[IO_PTR] != <span class="string">'\n'</span>)</span><br><span class="line">            s[len ++] = IO_BUF[IO_PTR], IO_PTR ++;</span><br><span class="line">        s[len] = <span class="string">'\0'</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">char</span> s[<span class="number">33</span>], *s1; s1 = s;</span><br><span class="line">        <span class="keyword">if</span> (!x) *s1++ = <span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">'-'</span>), x = -x;</span><br><span class="line">        <span class="keyword">while</span>(x) *s1++ = (x % <span class="number">10</span> + <span class="string">'0'</span>), x /= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">while</span>(s1-- != s) <span class="built_in">putchar</span>(*s1);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">println</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">        print(x); <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> IO;<span class="comment">//要写上这个</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    begin();<span class="comment">//还有这个</span></span><br><span class="line">    <span class="keyword">int</span> n,m,a,b,c,d,dif,now;</span><br><span class="line">    scan_d(n);</span><br><span class="line">    scan_d(m);</span><br><span class="line">    <span class="keyword">while</span> (m--)</span><br><span class="line">    &#123;</span><br><span class="line">        scan_d(a);</span><br><span class="line">        scan_d(b);</span><br><span class="line">        scan_d(c);</span><br><span class="line">        scan_d(d);</span><br><span class="line">        cf[a][b]+=<span class="number">1</span>;</span><br><span class="line">        cf[c+<span class="number">1</span>][d+<span class="number">1</span>]+=<span class="number">1</span>;</span><br><span class="line">        cf[a][d+<span class="number">1</span>]-=<span class="number">1</span>;</span><br><span class="line">        cf[c+<span class="number">1</span>][b]-=<span class="number">1</span>;</span><br><span class="line">        dif=a+b;</span><br><span class="line">        cf2[a][b]+=dif;</span><br><span class="line">        cf2[c+<span class="number">1</span>][d+<span class="number">1</span>]+=dif;</span><br><span class="line">        cf2[a][d+<span class="number">1</span>]-=dif;</span><br><span class="line">        cf2[c+<span class="number">1</span>][b]-=dif;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cf[i][j]+=cf[i][j<span class="number">-1</span>]+cf[i<span class="number">-1</span>][j]-cf[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">            cf2[i][j]+=cf2[i][j<span class="number">-1</span>]+cf2[i<span class="number">-1</span>][j]-cf2[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            now=cf[i][j]*(i+j)-cf2[i][j];</span><br><span class="line">            <span class="keyword">if</span> (now)</span><br><span class="line">            &#123;</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                ans=ans*now%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag) print(ans);</span><br><span class="line">    <span class="keyword">else</span> print(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里还有一份官方另一份就不放了，x和y两个数组搞来搞去看都看不懂<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e3</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">char</span> fre[<span class="number">10</span>] = <span class="string">"data1.in"</span>;</span><br><span class="line"><span class="keyword">char</span> fot[<span class="number">20</span>] = <span class="string">"data1.out"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> tot[N][N];</span><br><span class="line"><span class="keyword">int</span> sum[N][N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m, u, l, d, r;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="built_in">memset</span>(tot, <span class="number">0</span>, <span class="keyword">sizeof</span> tot);</span><br><span class="line">    <span class="built_in">memset</span>(sum, <span class="number">0</span>, <span class="keyword">sizeof</span> sum);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;u, &amp;l, &amp;d, &amp;r);</span><br><span class="line">        sum[u][l] += (u + l);</span><br><span class="line">        sum[u][r + <span class="number">1</span>] -= (u + l);</span><br><span class="line">        sum[d + <span class="number">1</span>][l] -= (u + l);</span><br><span class="line">        sum[d + <span class="number">1</span>][r + <span class="number">1</span>] += (u + l);</span><br><span class="line">        tot[u][l] ++;</span><br><span class="line">        tot[u][r + <span class="number">1</span>] --;</span><br><span class="line">        tot[d + <span class="number">1</span>][l] --;</span><br><span class="line">        tot[d + <span class="number">1</span>][r + <span class="number">1</span>] ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)&#123;</span><br><span class="line">            sum[i][j] += sum[i][j - <span class="number">1</span>];</span><br><span class="line">            tot[i][j] += tot[i][j - <span class="number">1</span>];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>,sum[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)&#123;</span><br><span class="line">            sum[i][j] += sum[i - <span class="number">1</span>][j];</span><br><span class="line">            tot[i][j] += tot[i - <span class="number">1</span>][j];<span class="comment">//他这里没有用二维前缀和的公式，而是一步一步求，具体过程可以看上面那张表格，我也放在文末了</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    LL ans = <span class="number">1</span>, now = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)&#123;</span><br><span class="line">            now = tot[i][j] * (i + j) - sum[i][j];</span><br><span class="line">            <span class="comment">//printf("%d ",now);</span></span><br><span class="line"><span class="comment">//            sum[i][j] = 0, tot[i][j] = 0;</span></span><br><span class="line">            <span class="keyword">if</span>(now) ans = ans * now % mod, flag = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//printf("\n");</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!flag)   ans = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%I64d\n"</span>, ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    solve();</span><br><span class="line"><span class="comment">//    int T = 6;</span></span><br><span class="line"><span class="comment">//    for(int cas = 1; cas &lt;= T; ++cas)&#123;</span></span><br><span class="line"><span class="comment">//        fre[4] = ('0' + cas);</span></span><br><span class="line"><span class="comment">//        fot[4] = ('0' + cas);</span></span><br><span class="line"><span class="comment">//        freopen(fre, "r", stdin);</span></span><br><span class="line"><span class="comment">//        freopen(fot, "w", stdout);</span></span><br><span class="line"><span class="comment">//        solve();</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">419683495</span></span><br><span class="line"><span class="comment">775697741</span></span><br><span class="line"><span class="comment">996935516</span></span><br><span class="line"><span class="comment">391348459</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">797953655</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="../../images/ZSTUOJ-4438-5.png" alt=""><br>Excel是个好东西，Excel大法好！！！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    RDJ.Widow
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hewidow.github.io/blog/posts/34116b35/" title="[ZSTUOJ-4438]曼哈顿距离">https://hewidow.github.io/blog/posts/34116b35/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/差分标记/" rel="tag"># 差分标记</a>
+          
+            <a href="/blog/tags/前缀和/" rel="tag"># 前缀和</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/68b04a38/" rel="next" title="[HDU-1879]继续畅通工程">
+                <i class="fa fa-chevron-left"></i> [HDU-1879]继续畅通工程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTYxMi8xODE1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/avatar.gif" alt="RDJ.Widow">
+            
+              <p class="site-author-name" itemprop="name">RDJ.Widow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hewidow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=844969710&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/weixin_43272781" title="申屠志刚" target="_blank">申屠志刚</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/kaike" title="kaike" target="_blank">kaike</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/MingSD/" title="MingSD" target="_blank">MingSD</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="" title="若有侵犯相关利益，请联系我删除" target="_blank">若有侵犯相关利益，请联系我删除</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RDJ.Widow</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("KGG67nO9fEAxLBkPBGCEe0qK-gzGzoHsz", "7rQbmHC3n9oT5GXMfn0G8m69");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
