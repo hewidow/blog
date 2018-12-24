@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="二维树状数组,逆序数,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,18 +81,14 @@
 
 
 
-<meta name="description" content="二维树状数组 逆序数">
-<meta name="keywords" content="二维树状数组,逆序数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[POJ-3067]Japan">
-<meta property="og:url" content="https://hewidow.github.io/blog/posts/8d53dee8/index.html">
+<meta property="og:title" content="。。。">
+<meta property="og:url" content="https://hewidow.github.io/blog/posts/5cf76431/index.html">
 <meta property="og:site_name" content="Widow&#39;s Blog">
-<meta property="og:description" content="二维树状数组 逆序数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-17T15:34:19.817Z">
+<meta property="og:updated_time" content="2018-12-24T14:12:00.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[POJ-3067]Japan">
-<meta name="twitter:description" content="二维树状数组 逆序数">
+<meta name="twitter:title" content="。。。">
 
 
 
@@ -122,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://hewidow.github.io/blog/posts/8d53dee8/">
+  <link rel="canonical" href="https://hewidow.github.io/blog/posts/5cf76431/">
 
 
 
 
 
-  <title>[POJ-3067]Japan | Widow's Blog</title>
+  <title>。。。 | Widow's Blog</title>
   
 
 
@@ -297,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hewidow.github.io/blog/blog/posts/8d53dee8/">
+    <link itemprop="mainEntityOfPage" href="https://hewidow.github.io/blog/blog/posts/5cf76431/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RDJ.Widow">
@@ -314,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[POJ-3067]Japan</h1>
+          <h1 class="post-title" itemprop="name headline">。。。</h1>
         
 
         <div class="post-meta">
@@ -326,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T23:20:23+08:00">
-                2018-12-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-24T22:05:10+08:00">
+                2018-12-24
               </time>
             
 
@@ -349,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/树状数组/" itemprop="url" rel="index">
-                    <span itemprop="name">树状数组</span>
+                  <a href="/blog/categories/我的随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">我的随笔</span>
                   </a>
                 </span>
 
@@ -366,7 +362,7 @@
 
           
           
-             <span id="/blog/posts/8d53dee8/" class="leancloud_visitors" data-flag-title="[POJ-3067]Japan">
+             <span id="/blog/posts/5cf76431/" class="leancloud_visitors" data-flag-title="。。。">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,33 +393,9 @@
       
 
       
-        <p>二维树状数组 逆序数<br><a id="more"></a></p>
-<center><a href="http://poj.org/problem?id=3067" target="_blank" rel="noopener"><strong>Japan</strong></a></center><br><center>Time Limit: 1000MS        Memory Limit: 65536K<br>Total Submissions: 33788        Accepted: 9047</center>
-
-<p><strong>Description</strong></p>
-<blockquote>
-<p>Japan plans to welcome the ACM ICPC World Finals and a lot of roads must be built for the venue. Japan is tall island with N cities on the East coast and M cities on the West coast (M &lt;= 1000, N &lt;= 1000). K superhighways will be build. Cities on each coast are numbered 1, 2, … from North to South. Each superhighway is straight line and connects city on the East coast with city of the West coast. The funding for the construction is guaranteed by ACM. A major portion of the sum is determined by the number of crossings between superhighways. At most two superhighways cross at one location. Write a program that calculates the number of the crossings between superhighways.</p>
-</blockquote>
-<p><strong>Input</strong></p>
-<blockquote>
-<p>The input file starts with T - the number of test cases. Each test case starts with three numbers – N, M, K. Each of the next K lines contains two numbers – the numbers of cities connected by the superhighway. The first one is the number of the city on the East coast and second one is the number of the city of the West coast.</p>
-</blockquote>
-<p><strong>Output</strong></p>
-<blockquote>
-<p>For each test case write one line on the standard output:<br>Test case (case number): (number of crossings)</p>
-</blockquote>
-<p><strong>Sample Input</strong></p>
-<blockquote>
-<p>1<br>3 4 4<br>1 4<br>2 3<br>3 2<br>3 1</p>
-</blockquote>
-<p><strong>Sample Output</strong></p>
-<blockquote>
-<p>Test case 1: 5</p>
-</blockquote>
-<p>这题以自己的思路做，在wa了几发后竟然ac了。。。<br>刚开始wa是因为我以为2条线的端点在city点相交也算一个交点，然后一直写的是res+=query(ts[i].c,m-ts[i].d+1);百思不得其解，后来看百度都是什么求逆序数，再后来才看到一个和我一样的思路，然后他说是从x-1和y-1开始的，所以我才醒悟过来是不算city那个点的，所以应该写成res+=query(ts[i].c-1,m-ts[i].d+1-1);//m-ts[i].d+1，因为倒过来算。<br>哦，对了，不用去管三线交于一点的情况。。<br>————————————————————————————————————<br>我的思路：左右（左east，右west）2侧，先按左边的大小排序，相等再按右边的，然后每条线的交点肯定和之前已经连接的线有关，然后只需去查左边的点的上面的连到右边的点的下面的条数，即穿越了几条线<br>左边从上到下编号从1开始，右边从下到上编号从1开始。关于更新那就反过来更新。</p>
-<p><strong>代码</strong></p>
-<p>先来一个二维树状数组解法，比直接求逆序数的那种慢<br><strong>AC 454ms G++</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">又是一道我看不懂题意的题。。</span></span><br><span class="line"><span class="comment">是直接求交点几个么。。不用管三条线交于一点那种情况？？</span></span><br><span class="line"><span class="comment">思路：左右2侧，先按左边的大小排序，相等再按右边的，然后每条线的交点肯定和之前已经连接的线有关，然后只需去查左边的点的上面的连到右边的点的下面的条数，即穿越了几条线</span></span><br><span class="line"><span class="comment">左边从上到下编号从1开始，右边从下到上编号从1开始。关于更新那就反过来更新</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mx=<span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> c,d;<span class="comment">//c存east，d存west</span></span><br><span class="line">&#125;ts[mx*mx];</span><br><span class="line"><span class="keyword">int</span> jz[mx+<span class="number">3</span>][mx+<span class="number">3</span>];<span class="comment">//行表示n的,即east;列表示m的,即west</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a,Node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a.c!=b.c) <span class="keyword">return</span> a.c&lt;b.c;</span><br><span class="line">    <span class="keyword">return</span> a.d&gt;b.d;<span class="comment">//这里改成小于号&lt;也没关系，虽然下面排序时，因为我m-ts[i].d+1会使小的变大，导致右边那列先排了大的数，但是没有关系，因为询问query的时候，加入左边是x这么大，右边是y这么大，但是询问是从x-1，y-1开始的，所以当x相同的时候，y从大到小还是从小到大都是没有关系的</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> z=y;</span><br><span class="line">    <span class="keyword">while</span> (x&lt;=n)<span class="comment">//n</span></span><br><span class="line">    &#123;</span><br><span class="line">        y=z;</span><br><span class="line">        <span class="keyword">while</span> (y&lt;=m)<span class="comment">//m</span></span><br><span class="line">        &#123;</span><br><span class="line">            jz[x][y]+=val;</span><br><span class="line">            y+=lowbit(y);</span><br><span class="line">        &#125;</span><br><span class="line">        x+=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> z=y;</span><br><span class="line">    <span class="keyword">while</span> (x&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        y=z;</span><br><span class="line">        <span class="keyword">while</span> (y&gt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans+=jz[x][y];</span><br><span class="line">            y-=lowbit(y);</span><br><span class="line">        &#125;</span><br><span class="line">        x-=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res;</span><br><span class="line">    <span class="keyword">int</span> t,k,a,b,cas=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        res=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">        <span class="built_in">memset</span>(jz,<span class="number">0</span>,<span class="keyword">sizeof</span>(jz));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;ts[i].c,&amp;ts[i].d);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(ts+<span class="number">1</span>,ts+k+<span class="number">1</span>,cmp);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            res+=query(ts[i].c<span class="number">-1</span>,m-ts[i].d+<span class="number">1</span><span class="number">-1</span>);<span class="comment">//m-ts[i].d+1，因为倒过来算，且是从x-1，y-1开始的</span></span><br><span class="line">            updata(ts[i].c,m-ts[i].d+<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Test case %d: %lld\n"</span>,++cas,res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再来一个逆序数的。。。上面的代码看来是我想复杂了。。<br><strong>AC 391ms G++</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">逆序数求</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mx=<span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> c,d;</span><br><span class="line">&#125;ts[mx*mx+<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> nx[mx+<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Node a,Node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a.c!=b.c) <span class="keyword">return</span> a.c&lt;b.c;</span><br><span class="line">    <span class="keyword">return</span> a.d&lt;b.d;<span class="comment">//&lt;号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (x&lt;=m)<span class="comment">//m</span></span><br><span class="line">    &#123;</span><br><span class="line">        nx[x]+=val;</span><br><span class="line">        x+=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans+=nx[x];</span><br><span class="line">        x-=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res;</span><br><span class="line">    <span class="keyword">int</span> t,k,a,b,cas=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--)</span><br><span class="line">    &#123;</span><br><span class="line">        res=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">        <span class="built_in">memset</span>(nx,<span class="number">0</span>,<span class="keyword">sizeof</span>(nx));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;ts[i].c,&amp;ts[i].d);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(ts+<span class="number">1</span>,ts+k+<span class="number">1</span>,cmp);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            updata(ts[i].d,<span class="number">1</span>);</span><br><span class="line">            res+=i-query(ts[i].d);<span class="comment">//ts[i].d</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Test case %d: %lld\n"</span>,++cas,res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>　<br><a id="more"></a><br>最近身体有些难受，还感冒了，顿时感觉搞acm学习算法很迷茫。。。不知道应该先系统地学一遍所有基础算法再研究每一个算法的进阶算法，还是学某一个基础算法时就直接将这个算法学到底，学到进阶为止。。。是先广度学习再深度学习，还是先深度学习，再广度学习。。。</p>
+<p>诶。。。</p>
+<p>加油吧，既然选择了这条路，跪着也要走完！</p>
 
       
     </div>
@@ -444,7 +416,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://hewidow.github.io/blog/posts/8d53dee8/" title="[POJ-3067]Japan">https://hewidow.github.io/blog/posts/8d53dee8/</a>
+    <a href="https://hewidow.github.io/blog/posts/5cf76431/" title="。。。">https://hewidow.github.io/blog/posts/5cf76431/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -457,14 +429,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/二维树状数组/" rel="tag"># 二维树状数组</a>
-          
-            <a href="/blog/tags/逆序数/" rel="tag"># 逆序数</a>
-          
-        </div>
-      
 
       
       
@@ -474,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/34116b35/" rel="next" title="[ZSTUOJ-4438]曼哈顿距离">
-                <i class="fa fa-chevron-left"></i> [ZSTUOJ-4438]曼哈顿距离
+              <a href="/blog/posts/8d53dee8/" rel="next" title="[POJ-3067]Japan">
+                <i class="fa fa-chevron-left"></i> [POJ-3067]Japan
               </a>
             
           </div>
@@ -483,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/5cf76431/" rel="prev" title="。。。">
-                。。。 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
