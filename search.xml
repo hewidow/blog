@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[ZSTUOJ-4448]用链表实现约瑟夫环]]></title>
+    <url>%2Fblog%2Fposts%2Fc6a3c025%2F</url>
+    <content type="text"><![CDATA[人生的第一个双向链表 用链表实现约瑟夫环 Time Limit: 1 Sec Memory Limit: 128 MBSubmit: 323 Solved: 164Description 你听说过约瑟夫问题吗？问题大致如下：首先n个人围成一个圈，标记为1到n号。接着，从1号开始报数（从1开始），然后2号报数，然后3号。。。当有人报到到m时，这个人就要踢出比赛，然后从被踢出的人的下一个人开始，重新报数（从1开始）。这样经过n-1次后，就只剩下了一个人，问最后剩下的那个人是几号？ Input 第1行为T，表示有T组数据；第2行到第T+1开始,每行输入n和m，n表示有几个人，m为上述的每报数m次就要踢出一个人1&lt;=n&lt;=100, 1&lt;=m&lt;=100 Output 一个数，表示最后剩下了几号 Sample Input 25 36 4 Sample Output 45 瞎几把乱写的，竟然还可以运行。。。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;stdio.h&gt;#include&lt;string.h&gt;#include&lt;iostream&gt;#include&lt;stdlib.h&gt;using namespace std;const int mx=103;struct Node&#123; int x; Node *bef; Node *next;&#125;;Node *create(int n)&#123; Node *head,*p,*p2; head=NULL; int sz=sizeof(Node); for (int i=1;i&lt;=n;++i) &#123; p=(Node *)malloc(sz); p-&gt;x=i; p-&gt;bef=NULL; p-&gt;next=NULL; if (head==NULL) &#123; head=p; p2=head; &#125; else &#123; p-&gt;bef=p2; p2-&gt;next=p; p2=p; &#125; &#125; head-&gt;bef=p; p-&gt;next=head; return head;&#125;Node *delt(Node *np)&#123; Node *p,*p2; p=np-&gt;bef; p2=np-&gt;next; p-&gt;next=p2; p2-&gt;bef=p; return p2;&#125;int main()&#123; int t,n,m; cin&gt;&gt;t; while (t--) &#123; cin&gt;&gt;n&gt;&gt;m; Node *head=NULL,*p,*p2; head=create(n); for (int i=1;i&lt;n;++i) &#123; int k=0; p2=head-&gt;bef; while (k&lt;m) &#123; p=p2-&gt;next; p2=p; k++; &#125; head=delt(p); &#125; printf("%d\n",head-&gt;x); &#125;&#125;]]></content>
+      <categories>
+        <category>链表</category>
+      </categories>
+      <tags>
+        <tag>双向链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[。。。]]></title>
     <url>%2Fblog%2Fposts%2F5cf76431%2F</url>
     <content type="text"><![CDATA[最近身体有些难受，还感冒了，顿时感觉搞acm学习算法很迷茫。。。不知道应该先系统地学一遍所有基础算法再研究每一个算法的进阶算法，还是学某一个基础算法时就直接将这个算法学到底，学到进阶为止。。。是先广度学习再深度学习，还是先深度学习，再广度学习。。。 诶。。。 加油吧，既然选择了这条路，跪着也要走完！ 对了，codeforces再也不用小号打了，本来想拿小号试试div2的，结果发现那场div2比div3还水，前三题迅速ac，第四题信心不足（还是要有信心啊！！！），就没去想过，第二天早上一起来秒解ac。。。小号竟然还加了几十分。。。]]></content>
