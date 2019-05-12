@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[欢迎访问我CSDN的Blog]]></title>
     <url>%2Fblog%2Fposts%2F4fe5bdb4%2F</url>
-    <content type="text"><![CDATA[突然感觉直接折腾github写Blog挺蠢的（貌似也没写多少），网页加载慢、写作烦、还无法被搜索引擎收录或者收录很慢，所以我CSDN上的Blog还是主阵地，RDJ_Widow的博客，欢迎访问！]]></content>
+    <content type="text"><![CDATA[RDJ_Widow的博客突然感觉直接折腾github写Blog挺蠢的（貌似也没写多少），网页加载慢、写作烦、还无法被搜索引擎收录或者收录很慢，所以我CSDN上的Blog还是主阵地，这边就放一些奇怪的东西吧。（#滑稽） 可以直接打开页面右边的菜单，上面有我CSDN的链接，也可以直接点击 RDJ_Widow的博客 这个访问，欢迎！]]></content>
       <categories>
         <category>我的随笔</category>
       </categories>
@@ -100,7 +100,7 @@
   </entry>
   <entry>
     <title><![CDATA[[HDU-1233]还是畅通工程]]></title>
-    <url>%2Fblog%2Fposts%2F286893e3%2F</url>
+    <url>%2Fblog%2Fposts%2F286893000%2F</url>
     <content type="text"><![CDATA[并查集 最小生成树 还是畅通工程Time Limit: 4000/2000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others)Total Submission(s): 61943 Accepted Submission(s): 28107 Problem Description 某省调查乡村交通状况，得到的统计表中列出了任意两村庄间的距离。省政府“畅通工程”的目标是使全省任何两个村庄间都可以实现公路交通（但不一定有直接的公路相连，只要能间接通过公路可达即可），并要求铺设的公路总长度为最小。请计算最小的公路总长度。 Input 测试输入包含若干测试用例。每个测试用例的第1行给出村庄数目N ( &lt; 100 )；随后的N(N-1)/2行对应村庄间的距离，每行给出一对正整数，分别是两个村庄的编号，以及此两村庄间的距离。为简单起见，村庄从1到N编号。当N为0时，输入结束，该用例不被处理。 Output 对每个测试用例，在1行里输出最小的公路总长度。 Sample Input 31 2 11 3 22 3 441 2 11 3 41 4 12 3 32 4 23 4 50 Sample Output 35 Hint Huge input, scanf is recommended. 代码没什么好说的，这是需要算加权边了的，然后Kruskal算法本质感觉就是个贪心算法。。AC 202ms G++12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485/*最小生成树Kruskal算法*/#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int maxn=100;int pre[maxn+3];struct Node&#123; int st,to; int w;&#125;edge[maxn*(maxn-1)/2+3];bool cmp(Node a,Node b)&#123; return a.w&lt;b.w;&#125;void init(int n)&#123; for (int i=1;i&lt;=n;i++) pre[i]=i;//初始化，刚开始为自己&#125;int unionfind(int x)//查找根节点&#123; int r=x; while (pre[r]!=r) &#123; r=pre[r]; &#125; int i=x,j; while (pre[i]!=r)//路径压缩。最好直接连接根节点 &#123; j=pre[i]; pre[i]=r; i=j; &#125; return r;&#125;int unionjoin(int x,int y)//检查2个点的根节点是否是同一个，是就不需要任何操作，不是就将他们的根节点1加入根节点2&#123; int fx=unionfind(x),fy=unionfind(y); if (fx!=fy) &#123; pre[fx]=fy; return 1; &#125; return 0;&#125;int kruskal(int n,int m)//每次找边最短的，并判断是不是在同一棵树内，是就略过，不是就加进答案，生成这条边&#123; int num=n-1; int ans=0; for (int i=1;i&lt;=m;i++) &#123; if (unionjoin(edge[i].st,edge[i].to)) &#123; ans+=edge[i].w; num--; &#125; if (!num)//当有n-1条边时退出 &#123; break; &#125; &#125; return ans;&#125;int main()&#123; int n,m,a,b,c,res; while(~scanf("%d",&amp;n)&amp;&amp;n) &#123; init(n); res=0; m=n*(n-1)/2; for (int i=1;i&lt;=m;i++) &#123; scanf("%d%d%d",&amp;a,&amp;b,&amp;c); edge[i].st=a; edge[i].to=b; edge[i].w=c; &#125; sort(edge+1,edge+m+1,cmp); res=kruskal(n,m); printf("%d\n",res); &#125;&#125;]]></content>
       <categories>
         <category>并查集&amp;最小生成树</category>
